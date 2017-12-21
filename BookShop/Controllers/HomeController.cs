@@ -12,9 +12,10 @@ namespace BookShop.Controllers
         {
             using (var db = new DatabaseContext())
             {
-                var cheapBooks = db.Books.Take(3).ToList()
-                                            .OrderBy(b => b.Price)
-                                            .ThenBy(b => b.Title);
+                var cheapBooks = db.Books.ToList()
+                                        .OrderBy(b => b.Price)
+                                        .ThenBy(b => b.Title)
+                                        .Take(3);
                 return View(cheapBooks);
             }
         }

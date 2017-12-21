@@ -20,6 +20,18 @@ namespace BookShop.AcceptanceTests.StepDefinitions
             _homeDriver.Navigate();
         }
 
+        [Then(@"the home screen should show the book '(.*)'")]
+        public void ThenTheHomeScreenShouldShowTheBook(string expectedTitle)
+        {
+            _homeDriver.ShowBook(expectedTitle);
+        }
+
+        [Then(@"the home screen should show the books (.*)")]
+        public void ThenTheHomeScreenShouldShowTheBooks(string expectedTitleList)
+        {
+            _homeDriver.ShowBooks(expectedTitleList);
+        }
+
         [Then(@"the home screen should show the following books")]
         public void ThenTheHomeScreenShouldShowTheFollowingBooks(Table expectedBooks)
         {

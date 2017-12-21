@@ -58,7 +58,7 @@ namespace BookShop.UITests.Selenium.Support
 
         private void StartIisExpress()
         {
-            int PortNumber = int.Parse(this.BaseUrl.Substring(this.BaseUrl.LastIndexOf(':') + 1, 5));
+            int PortNumber = int.Parse(BaseUrl.Substring((BaseUrl.LastIndexOf(':') + 1), (BaseUrl.LastIndexOf('/') - (BaseUrl.LastIndexOf(':') + 1))));
 
             var app = new WebApplication(ProjectLocation.FromFolder("BookShop"), PortNumber);
             app.AddEnvironmentVariable("UITests");

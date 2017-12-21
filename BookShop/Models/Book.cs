@@ -1,10 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace BookShop.Models
 {
     public class Book
     {
+        public Book()
+        {
+            UploadFiles = new List<UploadFile>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -21,5 +27,7 @@ namespace BookShop.Models
         public decimal Price { get; set; }
 
         public List<OrderLine> OrderLines { get; set; }
+
+        public virtual List<UploadFile> UploadFiles { get; set; }
     }
 }

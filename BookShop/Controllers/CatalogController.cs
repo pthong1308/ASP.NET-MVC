@@ -5,6 +5,10 @@ using LinqKit;
 using System.Net;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Web;
+using System.IO;
+using System.Transactions;
+using System;
 
 namespace BookShop.Controllers
 {
@@ -36,11 +40,19 @@ namespace BookShop.Controllers
             try
             {
                 if (ModelState.IsValid)
-                {
-                    db.Books.Add(book);
-                    db.SaveChanges();
-                    return RedirectToAction("Index","Catalog");
-                }
+                    using (var scope = new TransactionScope())
+                    {
+                        //Save book item into database
+                        db.Books.Add(book);
+                        db.SaveChanges();
+
+                        if (Request.Files.Count > 0)
+                            Upload(book);
+
+                        scope.Complete();
+
+                        return RedirectToAction("Index", "Catalog");
+                    }
                 return View();
             }
             catch (RetryLimitExceededException /* dex */)
@@ -76,9 +88,19 @@ namespace BookShop.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.Entry(book).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index","Catalog");
+                    using (var scope = new TransactionScope())
+                    {
+                        //Save book item into database
+                        db.Entry(book).State = EntityState.Modified;
+                        db.SaveChanges();
+
+                        if (Request.Files.Count > 0)
+                            Upload(book);
+
+                        scope.Complete();
+
+                        return RedirectToAction("Index", "Catalog");
+                    }
                 }
                 return View();
             }
@@ -122,6 +144,56 @@ namespace BookShop.Controllers
                 return HttpNotFound();
             }
             return View(book);
+        }
+
+        public FileResult GetUpload(string imageId, string bookId)
+        {
+            string path = Server.MapPath("~/App_Data/Images/");
+            FileResult file;
+
+            try
+            {
+                file = File(Path.Combine(path, imageId), "image");
+                return file;
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.)
+                ModelState.AddModelError("", "Unable to load images. Try again, and if the problem persists, see your system administrator.");
+                return null;
+            }
+        }
+
+        private void Upload(Book book)
+        {
+            string path = Server.MapPath("~/App_Data/Images/");
+
+            try
+            {
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var uploadFile = new UploadFile
+                    {
+                        BookId = book.Id
+                    };
+
+                    //Save the list of Book Ids into database
+                    db.UploadFiles.Add(uploadFile);
+                    db.SaveChanges();
+
+                    //Save uploaded files on server
+                    Request.Files[i].SaveAs(Path.Combine(path, uploadFile.Id.ToString()));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -19,8 +19,20 @@ Background:
 
 Scenario: Cheapest 3 books should be listed on home screen
 	When I go to shop
+	Then the home screen should show the book 'Specification By Example'
+	   * the home screen should show the book 'The Power of Now'
+	   * the home screen should show the book 'The Scrum Field Guide'
+
+@alternative_syntax
+Scenario: Cheapest 3 books should be listed on the home screen (list syntax)
+	When I go to shop
+	Then the home screen should show the books 'Specification By Example', 'The Power of Now', 'The Scrum Field Guide'
+
+@alternative_syntax
+Scenario: Cheapest 3 books should be listed on the home screen (table syntax)
+	When I go to shop
 	Then the home screen should show the following books
-	| Title                    |
-	| Specification By Example |
-	| The Power of Now         |
-	| The Scrum Field Guide    |
+		| Title                    |
+		| Specification By Example |
+		| The Power of Now         |
+		| The Scrum Field Guide    |

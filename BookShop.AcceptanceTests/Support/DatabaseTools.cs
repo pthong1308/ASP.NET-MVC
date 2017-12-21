@@ -13,6 +13,7 @@ namespace BookShop.AcceptanceTests.Support
             {
                 db.OrderLines.RemoveRange(db.OrderLines);
                 db.Orders.RemoveRange(db.Orders);
+                db.UploadFiles.RemoveRange(db.UploadFiles);
                 db.Books.RemoveRange(db.Books);
                 db.SaveChanges();
             }

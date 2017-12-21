@@ -1,4 +1,4 @@
-﻿@automated
+﻿   @automated
 Feature: US03 - Shopping cart
 	As a potential customer
 	I want to collect books in a shopping cart

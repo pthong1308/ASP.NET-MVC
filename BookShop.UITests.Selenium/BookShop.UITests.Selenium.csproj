@@ -101,6 +101,7 @@
     <Compile Include="Support\SeleniumController.cs" />
     <Compile Include="Support\SeleniumStepsBase.cs" />
     <Compile Include="Support\SeleniumSupport.cs" />
+    <Compile Include="Support\TableExtensions.cs" />
     <Compile Include="Support\WebDriverExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

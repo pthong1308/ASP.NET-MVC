@@ -29,7 +29,7 @@ namespace BookShop.UITests.Selenium
             //Arrange
             var expectedTitles = expectedTitleList.Split(',').Select(t => t.Trim().Trim('\''));
 
-            //Action
+            //Act
             Browser.SwitchTo().DefaultContent();
             var foundBooks = from row in Browser.FindElements(By.XPath("//table/tbody/tr"))
                              let title = row.FindElement(By.Id("title")).Text
@@ -46,7 +46,7 @@ namespace BookShop.UITests.Selenium
             //Arrange
             var expectedTitles = expectedBooks.Rows.Select(r => r["Title"]);
 
-            //Action
+            //Act
             var foundBooks = from row in Browser.FindElements(By.XPath("//table/tbody/tr"))
                              let title = row.FindElement(By.Id("title")).Text
                              let author = row.FindElement(By.Id("author")).Text

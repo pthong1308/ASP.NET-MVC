@@ -148,6 +148,51 @@ this.ScenarioSetup(scenarioInfo);
 this.FeatureBackground();
 #line 21
  testRunner.When("I go to shop", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+ testRunner.Then("the home screen should show the book \'Specification By Example\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+    testRunner.And("the home screen should show the book \'The Power of Now\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
+#line 24
+    testRunner.And("the home screen should show the book \'The Scrum Field Guide\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cheapest 3 books should be listed on the home screen (list syntax)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Home Screen")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("alternative_syntax")]
+        public virtual void Cheapest3BooksShouldBeListedOnTheHomeScreenListSyntax()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cheapest 3 books should be listed on the home screen (list syntax)", new string[] {
+                        "alternative_syntax"});
+#line 27
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 28
+ testRunner.When("I go to shop", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 29
+ testRunner.Then("the home screen should show the books \'Specification By Example\', \'The Power of N" +
+                    "ow\', \'The Scrum Field Guide\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Cheapest 3 books should be listed on the home screen (table syntax)")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US02 - Home Screen")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("alternative_syntax")]
+        public virtual void Cheapest3BooksShouldBeListedOnTheHomeScreenTableSyntax()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cheapest 3 books should be listed on the home screen (table syntax)", new string[] {
+                        "alternative_syntax"});
+#line 32
+this.ScenarioSetup(scenarioInfo);
+#line 6
+this.FeatureBackground();
+#line 33
+ testRunner.When("I go to shop", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title"});
@@ -157,7 +202,7 @@ this.FeatureBackground();
                         "The Power of Now"});
             table2.AddRow(new string[] {
                         "The Scrum Field Guide"});
-#line 22
+#line 34
  testRunner.Then("the home screen should show the following books", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();

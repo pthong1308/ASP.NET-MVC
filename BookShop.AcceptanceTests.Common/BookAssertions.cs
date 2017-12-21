@@ -34,7 +34,7 @@ namespace BookShop.AcceptanceTests.Common
 
         public static void BookListScreenShouldShowInOrder(IEnumerable<Book> shownBooks, IEnumerable<Book> expectedBooks)
         {
-            shownBooks.ShouldAllBeEquivalentTo(expectedBooks, option => option.Excluding(o => o.Id).WithStrictOrdering());
+            shownBooks.ShouldAllBeEquivalentTo(expectedBooks, option => option.Excluding(o => o.Id).Excluding(o => o.UploadFiles).WithStrictOrdering());
         }
     }
 }

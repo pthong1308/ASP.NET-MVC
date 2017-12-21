@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Web;
+using System.Web.Routing;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BookShop.Controllers;
 using BookShop.Models;
 using BookShop.UnitTests.Support;
+using Moq;
 
 namespace BookShop.UnitTests
 {
@@ -18,6 +21,14 @@ namespace BookShop.UnitTests
         [TestMethod]
         public void ValidateCreateBookModel_WithValidModel_ExpectValidNavigation()
         {
+            //Setup a fake HttpRequest
+            Mock<HttpContextBase> moqContext = new Mock<HttpContextBase>();
+            Mock<HttpRequestBase> moqRequest = new Mock<HttpRequestBase>();
+            Mock<HttpPostedFileBase> moqPostedFile = new Mock<HttpPostedFileBase>();
+
+            moqRequest.Setup(r => r.Files.Count).Returns(0);
+            moqContext.Setup(x => x.Request).Returns(moqRequest.Object);
+
             //Arrange
             var controller = new CatalogController();
             var book = new Book
@@ -26,6 +37,9 @@ namespace BookShop.UnitTests
                 Author = "Matt Wynne and Aslak Hellesoy",
                 Price = Convert.ToDecimal(18.00)
             };
+
+            controller.ControllerContext = new ControllerContext(moqContext.Object, new RouteData(), controller);
+
             var validationResults = TestModelHelper.ValidateModel(controller, book);
 
             //Act
@@ -46,6 +60,14 @@ namespace BookShop.UnitTests
         [TestMethod]
         public void ValidateCreateBookModel_WithTitleIsNull_ExpectValidationError()
         {
+            //Setup a fake HttpRequest
+            Mock<HttpContextBase> moqContext = new Mock<HttpContextBase>();
+            Mock<HttpRequestBase> moqRequest = new Mock<HttpRequestBase>();
+            Mock<HttpPostedFileBase> moqPostedFile = new Mock<HttpPostedFileBase>();
+
+            moqRequest.Setup(r => r.Files.Count).Returns(0);
+            moqContext.Setup(x => x.Request).Returns(moqRequest.Object);
+
             //Arrange
             var controller = new CatalogController();
             var book = new Book
@@ -54,6 +76,8 @@ namespace BookShop.UnitTests
                 Author = "David Chelimsky",
                 Price = Convert.ToDecimal(17.50)
             };
+            controller.ControllerContext = new ControllerContext(moqContext.Object, new RouteData(), controller);
+
             var validationResults = TestModelHelper.ValidateModel(controller, book);
 
             //Act
@@ -74,6 +98,14 @@ namespace BookShop.UnitTests
         [TestMethod]
         public void ValidateCreateBookModel_WithTitleContainsSpaceOnly_ExpectValidationError()
         {
+            //Setup a fake HttpRequest
+            Mock<HttpContextBase> moqContext = new Mock<HttpContextBase>();
+            Mock<HttpRequestBase> moqRequest = new Mock<HttpRequestBase>();
+            Mock<HttpPostedFileBase> moqPostedFile = new Mock<HttpPostedFileBase>();
+
+            moqRequest.Setup(r => r.Files.Count).Returns(0);
+            moqContext.Setup(x => x.Request).Returns(moqRequest.Object);
+
             //Arrange
             var controller = new CatalogController();
             var book = new Book
@@ -82,6 +114,8 @@ namespace BookShop.UnitTests
                 Author = "David Chelimsky",
                 Price = Convert.ToDecimal(17.50)
             };
+            controller.ControllerContext = new ControllerContext(moqContext.Object, new RouteData(), controller);
+
             var validationResults = TestModelHelper.ValidateModel(controller, book);
 
             //Act
@@ -104,6 +138,14 @@ namespace BookShop.UnitTests
         [TestMethod]
         public void ValidateCreateBookModel_WithTitleExceeds100Characters_ExpectValidationError()
         {
+            //Setup a fake HttpRequest
+            Mock<HttpContextBase> moqContext = new Mock<HttpContextBase>();
+            Mock<HttpRequestBase> moqRequest = new Mock<HttpRequestBase>();
+            Mock<HttpPostedFileBase> moqPostedFile = new Mock<HttpPostedFileBase>();
+
+            moqRequest.Setup(r => r.Files.Count).Returns(0);
+            moqContext.Setup(x => x.Request).Returns(moqRequest.Object);
+
             //Arrange
             var controller = new CatalogController();
             var book = new Book
@@ -112,6 +154,8 @@ namespace BookShop.UnitTests
                 Author = "David Chelimsky",
                 Price = Convert.ToDecimal(17.50)
             };
+            controller.ControllerContext = new ControllerContext(moqContext.Object, new RouteData(), controller);
+
             var validationResults = TestModelHelper.ValidateModel(controller, book);
 
             //Act

@@ -18,14 +18,14 @@ namespace BookShop.AcceptanceTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class US05_CreateNewBookFeature
+    public partial class US06_EditingBookFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
-#line 1 "US05_CreatingBook.feature"
+#line 1 "US06-EditingBook.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -44,8 +44,8 @@ namespace BookShop.AcceptanceTests.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US05 - Create New Book", "\tAs a sale role\r\n\tI want to add new book item\r\n\tSo that the potential customers h" +
-                    "ave more products to choose", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "US06 - Editing Book", "\tAs a sale role\r\n\tI want to edit information of an existing book item\r\n\tSo that t" +
+                    "he potential customers have more products to choose", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -60,9 +60,9 @@ namespace BookShop.AcceptanceTests.Features
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "US05 - Create New Book")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "US06 - Editing Book")))
             {
-                global::BookShop.AcceptanceTests.Features.US05_CreateNewBookFeature.FeatureSetup(null);
+                global::BookShop.AcceptanceTests.Features.US06_EditingBookFeature.FeatureSetup(null);
             }
         }
         
@@ -133,79 +133,65 @@ namespace BookShop.AcceptanceTests.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successful Creating New Book")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US05 - Create New Book")]
-        public virtual void SuccessfulCreatingNewBook()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successful Update Price and Image of Existing Book Item")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "US06 - Editing Book")]
+        public virtual void SuccessfulUpdatePriceAndImageOfExistingBookItem()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successful Creating New Book", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successful Update Price and Image of Existing Book Item", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line 20
- testRunner.Given("I am on Create Book Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("I open the details of \'The Scrum Field Guide\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
+ testRunner.And("I update the price to 17.31", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+ testRunner.And("I upload images for this book: \'Scrum-MitchLacey.jpg\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Author",
                         "Title",
                         "Price"});
             table2.AddRow(new string[] {
-                        "Martin Fowler",
-                        "Refactoring",
-                        "29.55"});
-#line 21
- testRunner.When("I input the following information", ((string)(null)), table2, "When ");
-#line 24
- testRunner.And("I upload images for this book: \'Refactoring-MartinFowler.jpg\', \'Refactoring2.jpg\'" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Author",
-                        "Title",
-                        "Price"});
-            table3.AddRow(new string[] {
                         "Gojko Adzic",
                         "Specification By Example",
                         "12.20"});
-            table3.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "Eckhart Tolle",
                         "The Power of Now",
                         "12.58"});
-            table3.AddRow(new string[] {
-                        "Mitch Lacey",
-                        "The Scrum Field Guide",
-                        "15.31"});
-            table3.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "Jeff Sutherland",
                         "Scrum: The Art of Doing Twice the Work in Half the Time",
                         "16.73"});
-            table3.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "Esther Derby and Diana Larsen",
                         "Agile Retrospectives",
                         "16.99"});
-            table3.AddRow(new string[] {
+            table2.AddRow(new string[] {
+                        "Mitch Lacey",
+                        "The Scrum Field Guide",
+                        "17.31"});
+            table2.AddRow(new string[] {
                         "Lisa Crispin and Janet Gregory",
                         "Agile Testing",
                         "20.20"});
-            table3.AddRow(new string[] {
-                        "Martin Fowler",
-                        "Refactoring",
-                        "29.55"});
-            table3.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "Ted Pattison",
                         "Inside Windows SharePoint Services",
                         "31.49"});
-            table3.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "Eric Evans",
                         "Domain Driven Design",
                         "46.34"});
-            table3.AddRow(new string[] {
+            table2.AddRow(new string[] {
                         "Martin Fowler",
                         "Analysis Patterns",
                         "50.20"});
-#line 25
- testRunner.Then("the list of books should update", ((string)(null)), table3, "Then ");
-#line 37
+#line 23
+ testRunner.Then("the list of books should update", ((string)(null)), table2, "Then ");
+#line 34
  testRunner.And("The images should upload on server", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
