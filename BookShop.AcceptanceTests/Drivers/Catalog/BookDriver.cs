@@ -3,9 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 using System.Web.Routing;
-using System.Configuration;
 using System.Collections.Generic;
 using BookShop.Controllers;
 using BookShop.Models;
@@ -148,8 +146,6 @@ namespace BookShop.AcceptanceTests.Drivers.Catalog
             Mock<HttpFileCollectionBase> moqPostedFileCollection = new Mock<HttpFileCollectionBase>();
             Mock<HttpServerUtilityBase> moqServer = new Mock<HttpServerUtilityBase>();
 
-            //FileStream fileStream = null;
-
             string imagePath = Path.Combine(ProjectLocation.FromFolder("BookShop").FullPath, @"App_Data\Images");
             moqServer.Setup(s => s.MapPath("~/App_Data/Images/")).Returns(imagePath);
             moqContext.Setup(x => x.Server).Returns(moqServer.Object);
@@ -163,15 +159,8 @@ namespace BookShop.AcceptanceTests.Drivers.Catalog
 
             for (int i=0; i < fileNames.Count(); i++)
             {
-                //string filePath = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + ConfigurationManager.AppSettings["ImageSource"] + fileNames.ElementAt(i));
-
-                //fileStream = new FileStream(filePath, FileMode.Open);
-
                 Mock<HttpPostedFileBase> moqPostedFile = new Mock<HttpPostedFileBase>();
-                //moqPostedFile.Setup(p => p.FileName).Returns(fileNames.ElementAt(i));
-                //moqPostedFile.Setup(p => p.InputStream).Returns(fileStream);
-                //moqPostedFile.Setup(p => p.ContentType).Returns("image/jpg");
-                //moqPostedFile.Setup(p => p.ContentLength).Returns((int)fileStream.Length);
+
                 moqPostedFile.Setup(p => p.SaveAs(It.IsAny<string>())).Verifiable();
                 
                 moqPostedFileCollection.Setup(c => c[i]).Returns(moqPostedFile.Object); ///
@@ -187,8 +176,6 @@ namespace BookShop.AcceptanceTests.Drivers.Catalog
                 _result = _controller.Create(book);
             else
                 _result = _controller.Edit(book);
-
-            //fileStream.Close();
         }
 
         public void SaveImages()
